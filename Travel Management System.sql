@@ -56,11 +56,13 @@ VALUES
     (501, 1, 101, 4.0, 'Great experience!'),
     (502, 2, 102, 3.5, 'Good service but room cleanliness can be improved.');    
     
-    
+--Retrieve all users    
 select * from Users;    
 
+--Retrieve all hotels
 select * from Hotels;
 
+--Retrieve bookings with user and hotel details
 select 
     B.BookingID,
     U.UserName AS GuestName,
@@ -74,7 +76,8 @@ JOIN
     Users U ON B.UserID = U.UserID
 JOIN
     Hotels H ON B.HotelID = H.HotelID;
-    
+
+--Retrieve reviews with user and hotel details
 select
 R.ReviewId,
 U.UserName as ReviewerName,
