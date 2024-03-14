@@ -62,6 +62,8 @@ VALUES
 
 
 use Retail;
+
+--Top-selling products
 with ProductSalesRank as(
 Select 
 Products.ProductID,
@@ -81,6 +83,7 @@ From ProductSalesRank
 where
 SalesRank=1;
 
+--Number of orders per month
 select 
 year(OrderDate) as OrderYear,
 Month(OrderDate) as OrderMonth,
@@ -92,6 +95,7 @@ year(OrderDate), Month(OrderDate)
 Order by
 OrderYear, OrderMonth;
 
+--Calculate total revenue for a specific period
 select 
 sum(orderitems.Quantity * orderitems.Subtotal) as TotalRevenue
 from
@@ -101,6 +105,7 @@ orderitems on Orders.OrderID=orderitems.OrderID
 where
 Orders.OrderDate >= '2023-01-01' and Orders.OrderDate < '2023-02-01';
 
+--Retrieve order details including products
 select 
 Orders.OrderID,
 orders.OrderDate,
@@ -120,6 +125,7 @@ orderitems on Orders.OrderID= orderitems.OrderID
 join
 Products on orderitems.ProductID=products.ProductID;
 
+--Retrieve products in a specific category
 Select 
 ProductID,
 ProductName,
@@ -131,6 +137,7 @@ inner join categories c
 on p.CategoryID=c.CategoryID
 where CategoryName='Electronics';
 
+--Retrieve product details by name
 Select 
 ProductID,
 ProductName,
@@ -141,6 +148,7 @@ Products
 where
 ProductName='Laptop';
 
+--Retrieve all orders for a customer
 Select
 Orders.OrderID,
 Orders.OrderDate,
